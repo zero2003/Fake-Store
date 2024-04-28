@@ -1,42 +1,58 @@
-// SplashScreen.js
-import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
-
-const SplashScreen = ({ navigation }) => {
-  useEffect(() => {
-    setTimeout(() => {
-      navigation.navigate('Home'); // Replace 'Home' with the name of your home screen
-    }, 2000); // The splash screen will be shown for 2 seconds
-  }, [navigation]);
-
+import React from "react";
+import { StyleSheet, Text, View, SafeAreaView, Image, TouchableOpacity } from "react-native";
+import {Ionicons} from "@expo/vector-icons"
+ 
+export default SplashScreen = ({ navigation }) => {
+ 
   return (
-    <View style={styles.container}>
-      <Image
-        source={require('C:\components\Images\DALL·E .webp')} // Replace with the actual path to your logo image
-        style={styles.logo}
-      />
-      <Text style={styles.text}>Welcome to Fake Store</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.imgContainer}>
+        <Text style={styles.title}>FAKE STORE</Text>
+        <Image source={require("./Images/storeimg.png")} style={styles.image} />
+
+        <TouchableOpacity style={styles.btn} onPress={()=> navigation.navigate('Home')}>
+          <Ionicons name={'arrow-forward-sharp'} size={22} color={'black'} />
+          <Text> Start Shopping !</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
   );
 };
-
+ 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#F5EE9E",
+    justifyContent: "center",
+    alignItems: "center",
   },
-  logo: {
-    width: 200, // Set the width to your preference
-    height: 200, // Set the height to your preference
-    resizeMode: 'contain',
+  imgContainer: {
+    display: "flex",
+    alignItems: "center",
+    fontSize: 30,
   },
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginTop: 20,
+  title: {
+    fontSize: 30,
+    fontFamily: "Helvetica",
+    fontWeight: "700",
+    // color: "#E76D83",
+    textShadowColor: "#000000",
+    textShadowOffset: { height: 1 },
+    textShadowRadius: 3,
+  
+  },
+  image: {
+    width: 240,
+    height: 300,
+    marginTop: 80
+  },
+  btn: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#E76D83",
+    padding: 10,
+    margin: 20,
+    borderRadius: 20,
   },
 });
-
-export default SplashScreen;

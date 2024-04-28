@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import Categories from './Categoris';// Adjusted path
-import SplashScreen from './src/components/SplashScreen';
+
 
 
 
