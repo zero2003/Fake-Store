@@ -10,6 +10,7 @@ import Products from './src/components/Products';
 import Iteam from './src/components/Iteam';// Make sure the name matches the export
 import ShoppingCart from './ShoppingCart';
 import { Provider } from 'react-redux';
+import Store from './src/components/Store';
 // Import more screens if necessary
 
 const Stack = createStackNavigator();
@@ -48,7 +49,7 @@ function App() {
   }
 
   return (
-    <Provider>
+    <Provider store={Store}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Splash-Screen">
           <Stack.Screen name="Splash-Screen" component={SplashScreen} />

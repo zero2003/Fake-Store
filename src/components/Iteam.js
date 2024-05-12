@@ -3,8 +3,12 @@ import { StyleSheet, Text, View, Pressable, ActivityIndicator, Image, ScrollView
 import React, { useState, useEffect } from 'react';
 import Title from './Title';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { addToCart } from "./ShoppingCartSlice";
+import { useDispatch } from 'react-redux';
 
 export default function Item({ route, navigation }) {
+    const dispatch = useDispatch()
+
     const [item, setItem] = useState({})
     const [loading, setLoading] = useState(true)
     const { id } = route.params
@@ -44,9 +48,10 @@ export default function Item({ route, navigation }) {
                         <Icon name="backspace" size={30} color="white" />
                         <Text style={styles.buttonText}>Back</Text>
                       </TouchableOpacity>
-                      <TouchableOpacity style={styles.button}>
+                      <TouchableOpacity style={styles.button} onPress={()=>dispatch(addToCart({img: item.image, name: item.title, price: item.price, id: item.id}))}>
                         <Icon name="cart" size={30} color="white" />
                         <Text style={styles.buttonText}>Add To Cart</Text>
+                        
                       </TouchableOpacity>
                     </View>
                     <View style={styles.description}>
