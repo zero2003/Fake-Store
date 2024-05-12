@@ -10,7 +10,7 @@ export default SplashScreen = ({ navigation }) => {
         <Text style={styles.title}>FAKE STORE</Text>
         <Image source={require("./Images/storeimg.png")} style={styles.image} />
 
-        <TouchableOpacity style={styles.btn} onPress={()=> navigation.navigate('Home')}>
+        <TouchableOpacity style={styles.btn} onPress={()=> navigation.navigate('Bottom-Navigator')}>
           <Ionicons name={'arrow-forward-sharp'} size={22} color={'black'} />
           <Text> Start Shopping !</Text>
         </TouchableOpacity>
