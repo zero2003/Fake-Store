@@ -9,16 +9,18 @@ import Home from './src/components/Home';
 import Products from './src/components/Products';
 import Iteam from './src/components/Iteam';// Make sure the name matches the export
 import ShoppingCart from './ShoppingCart';
-import { Provider } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 import Store from './src/components/Store';
+import UserProfile from "./src/components/UserProfile";
+import Orders from './src/components/Orders';
+import UserNaz from './src/components/UserNaz';
+import { getCartSummary } from './src/components/ShoppingCartSlice';
 // Import more screens if necessary
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function App() {
-
-
 
   const ProductScreenStack = () => {
     return (
@@ -32,6 +34,7 @@ function App() {
   }
 
   const BottomNavigator = () => {
+    const { totalQty } = useSelector(getCartSummary)
     return (
       <Tab.Navigator initialRouteName='Product-nav'>
         <Tab.Screen name='Product-nav' component={ProductScreenStack} options={{
@@ -42,8 +45,30 @@ function App() {
         <Tab.Screen name='Shopping Cart' component={ShoppingCart} options={{
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="cart-sharp" color={'black'} size={18} />
-          ), headerShown: false
+          ), headerShown: false, tabBarBadge: totalQty > 0 ? totalQty : null
         }} />
+        <Tab.Screen
+          name="My Orders"
+          component={Orders}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="basket" color={'black'} size={18} />
+            ),
+            headerShown: false,
+            tabBarBadgeStyle: { color: "white" },
+          }}
+        />
+        <Tab.Screen
+          name="User Profile"
+          component={UserNaz}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="person-circle -sharp" color={'black'} size={18} />
+            ),
+            headerShown: false,
+            tabBarBadgeStyle: { color: "white" },
+          }}
+        />
       </Tab.Navigator>
     )
   }
